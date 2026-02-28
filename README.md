@@ -1,66 +1,13 @@
-## Foundry
-
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
-
-Foundry consists of:
-
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Foundry Fund MeThis project is a decentralized funding application built with Foundry. It allows users to fund the contract with ETH based on a minimum USD value tracked via Chainlink Price Feeds. The owner of the contract can withdraw the funds at any time.## FeaturesDecentralized Funding: Users can send ETH to the contract.Price Conversion: Uses Chainlink Oracles to ensure a minimum USD requirement is met.Automated Scripts: Includes helper scripts for deployment and interactions (funding/withdrawing).Robust Testing: Comprehensive unit and integration tests.CI/CD Integration: Optimized for GitHub Actions.## Getting Started### PrerequisitesEnsure you have Foundry installed.Bashcurl -L https://foundry.paradigm.xyz | bash
+foundryup
+### InstallationClone the repository and install dependencies:Bashgit clone https://github.com/olayinkasanusi/foundry-fundme
+cd foundry-fundme
+forge install
+### Local DevelopmentBuild the project:Bashforge build
+Run tests:Bashforge test
+Format code:Bashforge fmt
+## Project StructureFolderDescriptionsrc/The core Smart Contracts (FundMe.sol, PriceConverter.sol).script/Deployment and interaction scripts.test/Unit and Integration tests.lib/External dependencies (Chainlink, Forge-Std, DevOps).## DeploymentTo deploy to a local or live network:Bash# Example for Sepolia
+forge script script/DeployFundMe.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY
+## InteractionsFunding the contract:Bashforge script script/interactions.s.sol:FundFundMe --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast
+Withdrawing funds:Bashforge script script/interactions.s.sol:WithdrawFundMe --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast
+## LicenseThis project is licensed under the MIT License.
